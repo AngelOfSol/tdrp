@@ -43,12 +43,8 @@ local.properties
 
 # Build results
 
-[Dd]ebug/
 [Rr]elease/
 x64/
-build/
-[Bb]in/
-[Oo]bj/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -193,7 +189,6 @@ $RECYCLE.BIN/
 *.egg
 *.egg-info
 dist/
-build/
 eggs/
 parts/
 var/
@@ -215,24 +210,12 @@ pip-log.txt
 .mr.developer.cfg
 
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
 # Executables
 *.exe
 *.out
 *.app
+
+*.tlog
+*.rule
+*.cmake
+**/CMakeFiles/
