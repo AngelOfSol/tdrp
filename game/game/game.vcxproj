@@ -70,7 +70,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Angle.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ComponentEngine.cpp" />
+    <ClCompile Include="ComponentID.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityEngine.cpp" />
+    <ClCompile Include="pi.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SuperSystem.cpp" />
+    <ClCompile Include="VectorExtensions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Angle.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentEngine.h" />
+    <ClInclude Include="ComponentID.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityEngine.h" />
+    <ClInclude Include="pi.h" />
+    <ClInclude Include="SuperSystem.h" />
+    <ClInclude Include="System.h" />
+    <ClInclude Include="VectorExtensions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
