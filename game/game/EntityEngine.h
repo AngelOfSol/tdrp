@@ -24,6 +24,11 @@ public:
 	*/
 	entity_id getNewEntity(void);
 	/**
+		Gets a new entity.
+		@return The pointer to the new entity.
+	*/
+	Entity* getNewEntityPointer(void);
+	/**
 		Attempts to delete the entity with the specified entity id.
 		@param id The id to be deleted.
 		@return Whether or not the entity was deleted.
@@ -41,6 +46,13 @@ public:
 		@return A list of pointers to entities that qualified.
 	*/
 	std::vector<Entity*> getEntitys(component_type_id type);
+	
+	/**
+		Gets the first entity that has all of the components flagged by type.
+		@param types The types of components to check for.
+		@return A pointer to the enitities that qualified.
+	*/
+	Entity* getFirstEntity(component_type_id type);
 	
 private:
 	std::vector<Entity> entities_;

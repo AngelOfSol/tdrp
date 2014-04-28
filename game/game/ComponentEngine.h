@@ -4,7 +4,7 @@
 #include <unordered_set>
 
 #include "Component.h"
-
+#include "Entity.h"
 class ComponentEngine
 {
 public:
@@ -32,6 +32,14 @@ public:
 			return newId;
 		}
 	}
+	
+	template <class T>
+	bool giveNewComponent(Entity& ent)
+	{
+		entity_id id = this->getNewComponent<T>();
+		return ent.addComponent(*this->getComponent(id));
+	}
+
 	bool deleteComponent(component_id id)
 	{
 		Component* toDelete = this->components_[id];
@@ -48,6 +56,12 @@ public:
 	T* getComponentAs(component_id id)
 	{
 		return dynamic_cast<T*>(this->components_[id]);
+	}
+	
+	template <class T>
+	T* getComponentOf(Entity& ent)
+	{
+		return this->getComponentAs<T>(ent.getComponent(T::getTypeID()));
 	}
 	Component* getComponent(component_id id)
 	{

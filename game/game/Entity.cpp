@@ -25,6 +25,7 @@ bool Entity::addComponent(const Component& component)
 	if(!this->hasComponents(component.getType()))
 	{
 		this->components_[component.getType()] = component.getId();
+		this->currentComponents_= this->currentComponents_ | component.getType();
 		return true;
 	} else
 	{

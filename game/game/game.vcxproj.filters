@@ -31,15 +31,24 @@
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{c7eb26b8-4a77-4ce5-bf58-7b91fcf6723b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Component\Actual Components">
+      <UniqueIdentifier>{000def99-0f06-4b41-be29-16c5999c52f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Component\Actual Components">
+      <UniqueIdentifier>{3ba51198-cf51-4bfe-bc07-13e1d8fe9acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\Systems">
+      <UniqueIdentifier>{7ebd037b-aae5-4a20-8d49-ace297fa588f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Systems">
+      <UniqueIdentifier>{d5824a94-4ce9-47ab-9e07-9a875ca2fecc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pi.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VectorExtensions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Angle.cpp">
@@ -51,9 +60,6 @@
     <ClCompile Include="ComponentEngine.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentID.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
@@ -62,6 +68,18 @@
     </ClCompile>
     <ClCompile Include="SuperSystem.cpp">
       <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="PositionComponent.cpp">
+      <Filter>Source Files\Component\Actual Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleComponent.cpp">
+      <Filter>Source Files\Component\Actual Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>Source Files\System\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Source Files\Component\Actual Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +112,21 @@
     </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionComponent.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleComponent.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>Header Files\System\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentList.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

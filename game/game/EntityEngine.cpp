@@ -29,6 +29,11 @@ entity_id EntityEngine::getNewEntity(void)
 	}
 }
 
+Entity* EntityEngine::getNewEntityPointer()
+{
+	return this->getEntity(this->getNewEntity());
+}
+
 bool EntityEngine::deleteEntity(entity_id e_id)
 {
 	// if the id is free and isn't out of bounds, add it to the free list
@@ -56,6 +61,8 @@ Entity* EntityEngine::getEntity(entity_id e_id)
 std::vector<Entity*> EntityEngine::getEntitys(component_id c_id)
 {
 	std::vector<Entity*> ret;
+	if(c_id == 0)
+		return ret;
 	for(auto iter = this->entities_.begin(); iter != this->entities_.end(); iter++)
 	{
 		// ask the entity if it has the specified components
@@ -66,4 +73,19 @@ std::vector<Entity*> EntityEngine::getEntitys(component_id c_id)
 		}
 	}
 	return ret;
+}
+
+Entity* EntityEngine::getFirstEntity(component_id c_id)
+{
+	std::vector<Entity*> ret;
+	for(auto iter = this->entities_.begin(); iter != this->entities_.end(); iter++)
+	{
+		// ask the entity if it has the specified components
+		// make sure the entity isn't deleted
+		if(this->freeIds_.count(iter->id_) == 0 && iter->hasComponents(c_id))
+		{
+			return &(*iter);
+		}
+	}
+	return NULL;
 }
