@@ -72,3 +72,25 @@ private:
 	std::unordered_set<component_id> freeIds_;
 };
 
+/*
+ComponentListInterface
+{
+     Component* getComponent(id);
+     id getNewComponent();
+}
+
+ComponentList<T>
+: public ComponentListInterface
+{
+      Component* getComponent(id);
+      id getNewComponent();
+}
+
+std::vector<ComponentEngine*>
+std::vector<ComponentEngine&>
+
+
+reimplement methods so that it works with
+
+
+*/

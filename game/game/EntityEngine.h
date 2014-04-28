@@ -59,3 +59,18 @@ private:
 	std::unordered_set<entity_id> freeIds_;
 };
 
+/*
+essentially remove the Entity class
+
+move all data into a bunch of vectors
+
+std::vector<std::vector<component_ids>> where the index of the first vector corresponds to the component type
+and the index of the second vector corresponds to the entity
+
+data[0][1] accesses the componentID of the second entity of the first component type
+
+axis of similiarity is the component type
+
+std::vecotr<component_type_id> has a bit flag set of the active components
+
+*/
