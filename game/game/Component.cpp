@@ -16,5 +16,5 @@ component_type_id Component::getNewTypeID(void)
 {
 	// returns 2 to the power of nextId_
 	// then increments nextId_
-	return 1 << nextTypeId_++;
+	return nextTypeId_++;
 }

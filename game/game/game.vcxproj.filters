@@ -81,6 +81,9 @@
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Source Files\Component\Actual Components</Filter>
     </ClCompile>
+    <ClCompile Include="ComponentListInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Angle.h">
@@ -126,6 +129,12 @@
       <Filter>Header Files\Component\Actual Components</Filter>
     </ClInclude>
     <ClInclude Include="CameraComponent.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentListInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="components.h">
       <Filter>Header Files\Component\Actual Components</Filter>
     </ClInclude>
   </ItemGroup>

@@ -24,11 +24,6 @@ public:
 	*/
 	entity_id getNewEntity(void);
 	/**
-		Gets a new entity.
-		@return The pointer to the new entity.
-	*/
-	Entity* getNewEntityPointer(void);
-	/**
 		Attempts to delete the entity with the specified entity id.
 		@param id The id to be deleted.
 		@return Whether or not the entity was deleted.
@@ -39,24 +34,51 @@ public:
 		@param id The id to be gotten.
 		@return A pointer to the entity.  Returns NULL if non existent.
 	*/
-	Entity* getEntity(entity_id id);
+	template <class T>
+	component_id getComponent(entity_id id)
+	{
+		return this->components_[T::getTypeID()][id];
+	}
+
+	template <class T>
+	bool addComponent(entity_id id, T component)
+	{
+		component_type_id typeId = T::getTypeID();
+		component_type_bit typeBit = T::getTypeBitID();
+		
+		while(this->components_.size() <= typeId)
+		{
+			this->components_.push_back(std::vector<component_id>(this->currentComponents_.size()));
+		}
+
+		if((this->currentComponents_[id] & typeBit) == typeBit)
+			return false;
+
+		this->currentComponents_[id] |= typeBit;
+		this->components_[typeId][id] = component.getId();
+
+		return true;
+	}
 	/**
 		Gets a set of entities that have all of the components flagged by type.
 		@param types The types of components to check for.
 		@return A list of pointers to entities that qualified.
 	*/
-	std::vector<Entity*> getEntitys(component_type_id type);
+	std::vector<entity_id> getEntitys(component_type_bit type);
 	
 	/**
 		Gets the first entity that has all of the components flagged by type.
 		@param types The types of components to check for.
 		@return A pointer to the enitities that qualified.
 	*/
-	Entity* getFirstEntity(component_type_id type);
+	entity_id getFirstEntity(component_type_bit type);
 	
 private:
 	std::vector<Entity> entities_;
 	std::unordered_set<entity_id> freeIds_;
+
+	std::vector<std::vector<component_id>> components_;
+	std::vector<component_type_id> currentComponents_;
 };
 
 /*

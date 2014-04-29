@@ -74,6 +74,7 @@
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentEngine.cpp" />
+    <ClCompile Include="ComponentListInterface.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityEngine.cpp" />
     <ClCompile Include="pi.cpp" />
@@ -90,6 +91,8 @@
     <ClInclude Include="ComponentEngine.h" />
     <ClInclude Include="ComponentID.h" />
     <ClInclude Include="ComponentList.h" />
+    <ClInclude Include="ComponentListInterface.h" />
+    <ClInclude Include="components.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityEngine.h" />
     <ClInclude Include="pi.h" />

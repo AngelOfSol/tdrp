@@ -4,6 +4,7 @@
 
 typedef unsigned long int component_id;
 typedef unsigned long int component_type_id;
+typedef unsigned long int component_type_bit;
 
 
 /**
@@ -29,8 +30,10 @@ public:
 		@return The type id of  thecomponent.
 	*/
 	virtual component_type_id getType() const = 0;
+	virtual component_type_bit getTypeBit() const = 0;
 protected:
-	friend class ComponentEngine;
+	template <class T>
+	friend class ComponentList;
 	Component(void);
 	component_id id_;
 	static component_type_id getNewTypeID();

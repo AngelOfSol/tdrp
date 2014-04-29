@@ -21,16 +21,16 @@ void RenderSystem::update(sf::Time timeStep)
     window.clear(sf::Color(255, 255, 255, 255));
 	// Draw stuff
 
-	std::vector<Entity*> drawables = this->entitiesList_.getEntitys(PositionComponent::getTypeID() | RectangleComponent::getTypeID());
+	std::vector<entity_id> drawables = this->entitiesList_.getEntitys(PositionComponent::getTypeID() | RectangleComponent::getTypeID());
 	
 	sf::RenderStates rs;
 
-	Entity* camera = this->entitiesList_.getFirstEntity(CameraComponent::getTypeID());
+	entity_id camera = this->entitiesList_.getFirstEntity(CameraComponent::getTypeID());
 
-	const CameraComponent& cam = *this->componentsList_.getComponentOf<CameraComponent>(*camera);
+	const CameraComponent& cam = this->componentsList_.getComponent<CameraComponent>(camera);
 
 
-	sf::Vector2f recenter(window.getSize().x, window.getSize().y);
+	sf::Vector2f recenter((float)window.getSize().x, (float)window.getSize().y);
 	recenter /= 2.0f;
 
 	rs.transform.translate(recenter);
@@ -40,9 +40,8 @@ void RenderSystem::update(sf::Time timeStep)
 
 	for(auto iter = drawables.begin(); iter != drawables.end(); iter++)
 	{
-		Entity& ent = **iter;
-		const PositionComponent& pos = *this->componentsList_.getComponentOf<PositionComponent>(ent);
-		const RectangleComponent& rec = *this->componentsList_.getComponentOf<RectangleComponent>(ent);
+		const PositionComponent& pos = this->componentsList_.getComponent<PositionComponent>(*iter);
+		const RectangleComponent& rec = this->componentsList_.getComponent<RectangleComponent>(*iter);
 		rs.transform.translate(pos);
 		sf::RectangleShape toDraw = sf::RectangleShape(rec);
 		toDraw.setFillColor(sf::Color::Black);

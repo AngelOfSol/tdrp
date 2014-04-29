@@ -16,22 +16,24 @@ entity_id EntityEngine::getNewEntity(void)
 	if(this->freeIds_.size() == 0)
 	{
 		// no free ids, so add a new one to the list
-		int newId = this->entities_.size();
-		this->entities_.push_back(Entity(newId));
-		return newId;
+		for(auto iter = this->components_.begin(); iter != this->components_.end(); iter++)
+		{
+			iter->push_back(0);
+		}
+		int id = this->currentComponents_.size();
+		this->currentComponents_.push_back(0);
+		return id;
 	} else
 	{
 		// theres a free id, clear the entity and return that instead
 		int newId = *this->freeIds_.begin();
-		this->freeIds_.erase(this->freeIds_.begin());
-		this->entities_[newId].removeAllComponents();
+		for(unsigned int i = 0; i < this->components_.size(); i++)
+		{
+			this->components_[i][newId] = 0;
+		}
+		this->currentComponents_[newId] = 0;
 		return newId;
 	}
-}
-
-Entity* EntityEngine::getNewEntityPointer()
-{
-	return this->getEntity(this->getNewEntity());
 }
 
 bool EntityEngine::deleteEntity(entity_id e_id)
@@ -40,6 +42,11 @@ bool EntityEngine::deleteEntity(entity_id e_id)
 	if(this->freeIds_.count(e_id) == 0 && e_id < this->entities_.size() && e_id >= 0)
 	{
 		this->freeIds_.insert(e_id);
+		for(unsigned int i = 0; i < this->components_.size(); i++)
+		{
+			this->components_[i][e_id] = 0;
+		}
+		this->currentComponents_[e_id] = 0;
 		return true;
 	} else
 	{
@@ -47,45 +54,34 @@ bool EntityEngine::deleteEntity(entity_id e_id)
 	}
 }
 
-Entity* EntityEngine::getEntity(entity_id e_id)
+
+std::vector<entity_id> EntityEngine::getEntitys(component_type_bit c_id)
 {
-	// check to make sure the entity isn't deleted, and the id is withing bounds
-	if(this->freeIds_.count(e_id) == 0 && e_id < this->entities_.size() && e_id >= 0)
-	{
-		return &this->entities_[e_id];
-	} else
-	{
-		return NULL;
-	}
-}
-std::vector<Entity*> EntityEngine::getEntitys(component_id c_id)
-{
-	std::vector<Entity*> ret;
+	std::vector<entity_id> ret;
 	if(c_id == 0)
 		return ret;
-	for(auto iter = this->entities_.begin(); iter != this->entities_.end(); iter++)
+	for(unsigned int i = 0; i < this->currentComponents_.size(); i++)
 	{
 		// ask the entity if it has the specified components
 		// make sure the entity isn't deleted
-		if(this->freeIds_.count(iter->id_) == 0 && iter->hasComponents(c_id))
+		if(this->freeIds_.count(i) == 0 && (this->currentComponents_[i] & c_id) == c_id)
 		{
-			ret.push_back(&(*iter));
+			ret.push_back(i);
 		}
 	}
 	return ret;
 }
 
-Entity* EntityEngine::getFirstEntity(component_id c_id)
+entity_id EntityEngine::getFirstEntity(component_id c_id)
 {
-	std::vector<Entity*> ret;
-	for(auto iter = this->entities_.begin(); iter != this->entities_.end(); iter++)
+	for(unsigned int i = 0; i < this->currentComponents_.size(); i++)
 	{
 		// ask the entity if it has the specified components
 		// make sure the entity isn't deleted
-		if(this->freeIds_.count(iter->id_) == 0 && iter->hasComponents(c_id))
+		if(this->freeIds_.count(i) == 0 && (this->currentComponents_[i] & c_id) == c_id)
 		{
-			return &(*iter);
+			return i;
 		}
 	}
-	return NULL;
+	return 0;
 }
