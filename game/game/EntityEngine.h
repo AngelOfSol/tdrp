@@ -78,7 +78,7 @@ private:
 	std::unordered_set<entity_id> freeIds_;
 
 	std::vector<std::vector<component_id>> components_;
-	std::vector<component_type_id> currentComponents_;
+	std::vector<component_type_bit> currentComponents_;
 };
 
 /*

@@ -125,17 +125,17 @@
     <ClInclude Include="RenderSystem.h">
       <Filter>Header Files\System\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentList.h">
-      <Filter>Header Files\Component\Actual Components</Filter>
-    </ClInclude>
     <ClInclude Include="CameraComponent.h">
       <Filter>Header Files\Component\Actual Components</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentListInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="components.h">
       <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentListInterface.h">
+      <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentList.h">
+      <Filter>Header Files\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
