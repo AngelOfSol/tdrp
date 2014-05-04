@@ -35,5 +35,13 @@ namespace jck
 		{
 			return lhs.x * rhs.y - lhs.y * rhs.x;
 		}
+		template <class T>
+		sf::Vector2<T> rotate(const sf::Vector2<T>& rhs, const Angle<T>& angle)
+		{
+			sf::Vector2<T> ret;
+			ret.x = rhs.x * cos(angle.radians()) - rhs.y * sin(angle.radians());
+			ret.y = rhs.x * sin(angle.radians()) + rhs.y * cos(angle.radians());
+			return ret;
+		}
 	}
 }

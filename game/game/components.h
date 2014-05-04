@@ -1,3 +1,7 @@
 #include "Position.h"
 #include "Rectangle.h"
 #include "Camera.h"
+#include "InputData.h"
+#include "Velocity.h"
+#include "Acceleration.h"
+#include "Player.h"

@@ -72,9 +72,6 @@
     <ClCompile Include="RenderSystem.cpp">
       <Filter>Source Files\System\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentListInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Component\Actual Components</Filter>
     </ClCompile>
@@ -84,8 +81,29 @@
     <ClCompile Include="Rectangle.cpp">
       <Filter>Source Files\Component\Actual Components</Filter>
     </ClCompile>
+    <ClCompile Include="InputData.cpp">
+      <Filter>Source Files\Component\Actual Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentListInterface.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
     <ClCompile Include="Engine.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Source Files\System\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Acceleration.cpp">
+      <Filter>Source Files\Component\Actual Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Velocity.cpp">
+      <Filter>Source Files\Component\Actual Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\System\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Component\Actual Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,8 +158,26 @@
     <ClInclude Include="Rectangle.h">
       <Filter>Header Files\Component\Actual Components</Filter>
     </ClInclude>
+    <ClInclude Include="InputData.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
     <ClInclude Include="Engine.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Header Files\System\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Acceleration.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Velocity.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files\System\Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

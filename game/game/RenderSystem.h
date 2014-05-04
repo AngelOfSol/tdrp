@@ -5,6 +5,7 @@
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 #include <SFML\Window.hpp>
+#include <iostream>
 class RenderSystem :
 	public System<sf::Time>
 {

@@ -3,6 +3,8 @@
 #include <SFML\Graphics.hpp>
 #include <SFML\Window.hpp>
 #include "RenderSystem.h"
+#include "Input.h"
+#include "Physics.h"
 #include "ComponentEngine.h"
 #include "EntityEngine.h"
 #include "ComponentList.h"
@@ -16,30 +18,27 @@ int main()
 	
 	Engine engine;
 	
-	entity_id block = engine.getNewEntity();
+	entity_id inputID = engine.getNewEntity();
+
+	engine.addComponentTo<InputData>(inputID);
+
+	InputData& input = engine.getComponentOf<InputData>(inputID);
+
+	entity_id player = engine.getNewEntity();
 	
-	engine.addComponentTo<Position>(block);
-	engine.addComponentTo<Rectangle>(block);
-
-	Position& pos = engine.getComponentOf<Position>(block);
-	Rectangle& rec = engine.getComponentOf<Rectangle>(block);
-
-	pos.x = 0;
-	pos.y = 0;
-
-	rec.x = 20;
-	rec.y = 20;
+	engine.addComponentTo<Position>(player);
 	
-	entity_id block2 = engine.clone(block);
+	engine.getComponentOf<Position>(player).x = 0;
+	engine.getComponentOf<Position>(player).y = 0;
 
-	Position& pos2 = engine.getComponentOf<Position>(block2);
-	Rectangle& rec2 = engine.getComponentOf<Rectangle>(block2);
+	engine.addComponentTo<Rectangle>(player);
+	
+	engine.getComponentOf<Rectangle>(player).x = 20;
+	engine.getComponentOf<Rectangle>(player).y = 20;
 
-	pos2.x = 100;
-	pos2.y = 100;
-
-	rec2.x = 30;
-	rec2.y = 30;
+	engine.addComponentTo<Acceleration>(player);
+	engine.addComponentTo<Velocity>(player);
+	engine.addComponentTo<Player>(player);
 
 	entity_id camera = engine.getNewEntity();
 
@@ -51,37 +50,73 @@ int main()
 	cam.y = 0;
 
 	cam.cameraAngle = Angle<float>(DEGREE, 0);
+	
+	std::vector<System<sf::Time>*> systems;
 
-	RenderSystem rend(engine, window);
+	
+	systems.push_back(new Input(engine));
+	systems.push_back(new Physics(engine));
+	systems.push_back(new RenderSystem(engine, window));
 	
 	sf::Clock timer;
 
 	sf::Time minimiumFrameTime = sf::seconds(1.0f / 60.0f);
 	sf::Event event;
-	int elapsedTotal = 0;
+	sf::Time elapsedTotal;
 
 
 	while(window.isOpen())
 	{
+		sf::Time elapsed = timer.restart();
 		while (window.pollEvent(event))
         {
             // Close window : exit
             if (event.type == sf::Event::Closed)
                 window.close();
-			
+			if (event.type == sf::Event::KeyPressed)
+			{
+				switch(event.key.code)
+				{
+				case sf::Keyboard::Up:
+					input.upKey = true;
+					break;
+				case sf::Keyboard::Down:
+					input.downKey = true;
+					break;
+				case sf::Keyboard::Left:
+					input.leftKey = true;
+					break;
+				case sf::Keyboard::Right:
+					input.rightKey = true;
+					break;
+				}
+			} else if (event.type == sf::Event::KeyReleased)
+			{
+				switch(event.key.code)
+				{
+				case sf::Keyboard::Up:
+					input.upKey = false;
+					break;
+				case sf::Keyboard::Down:
+					input.downKey = false;
+					break;
+				case sf::Keyboard::Left:
+					input.leftKey = false;
+					break;
+				case sf::Keyboard::Right:
+					input.rightKey = false;
+					break;
+				}
+			}
         }
-		sf::Time elapsed = timer.restart();
-		elapsedTotal += (int)elapsed.asMicroseconds();
-		while (elapsedTotal >= minimiumFrameTime.asMicroseconds())
+		
+		for(auto iter = systems.begin(); iter != systems.end(); iter++)
 		{
-			elapsedTotal %= minimiumFrameTime.asMicroseconds();
-			cam.cameraAngle += Angle<float>(DEGREE, 1);
-			cam.x += 0.3f;
-			cam.y += 0.3f;
+			(*iter)->update(elapsed);
 		}
+		
 
 
-		rend.update(sf::seconds(1));
 	}
 	return 0;
 }

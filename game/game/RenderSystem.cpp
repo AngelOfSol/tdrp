@@ -44,9 +44,19 @@ void RenderSystem::update(sf::Time timeStep)
 		const Position& pos = this->engine_.getComponentOf<Position>(*iter);
 		const Rectangle& rec = this->engine_.getComponentOf<Rectangle>(*iter);
 		rs.transform.translate(pos);
+		if(this->engine_.hasComponent<Player>(*iter))
+		{
+			rs.transform.rotate(this->engine_.getComponentOf<Player>(*iter).rotation.degrees());
+		}
+		rs.transform.translate(-0.5f * rec);
 		sf::RectangleShape toDraw = sf::RectangleShape(rec);
 		toDraw.setFillColor(sf::Color::Black);
 		window.draw(toDraw, rs);
+		rs.transform.translate(0.5f * rec);
+		if(this->engine_.hasComponent<Player>(*iter))
+		{
+			rs.transform.rotate(-this->engine_.getComponentOf<Player>(*iter).rotation.degrees());
+		}
 		rs.transform.translate(-pos);
 	}
 

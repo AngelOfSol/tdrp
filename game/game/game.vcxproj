@@ -70,6 +70,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Acceleration.cpp" />
     <ClCompile Include="Angle.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -78,14 +79,20 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityEngine.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InputData.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="pi.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SuperSystem.cpp" />
+    <ClCompile Include="Velocity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Acceleration.h" />
     <ClInclude Include="Angle.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Component.h" />
@@ -97,13 +104,18 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityEngine.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="InputData.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="pi.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="SuperSystem.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="VectorExtensions.h" />
+    <ClInclude Include="Velocity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

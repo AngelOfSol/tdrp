@@ -85,6 +85,31 @@ public:
 		this->validate();
 		return *this;
 	}
+	
+	Angle<T> operator +(const T& rhs) const
+	{
+		Angle<T> ret = *this;
+		ret += rhs;
+		return ret;
+	}
+	Angle<T> operator +(const Angle& rhs) const
+	{
+		Angle<T> ret = *this;
+		ret += rhs;
+		return ret;
+	}
+	Angle<T> operator -(const T& rhs) const
+	{
+		Angle<T> ret = *this;
+		ret -= rhs;
+		return ret;
+	}
+	Angle<T> operator -(const Angle& rhs) const
+	{
+		Angle<T> ret = *this;
+		ret -= rhs;
+		return ret;
+	}
 
 private:
 	T rValue_;
