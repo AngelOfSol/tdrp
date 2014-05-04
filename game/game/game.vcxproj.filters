@@ -69,19 +69,22 @@
     <ClCompile Include="SuperSystem.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
-    <ClCompile Include="PositionComponent.cpp">
-      <Filter>Source Files\Component\Actual Components</Filter>
-    </ClCompile>
-    <ClCompile Include="RectangleComponent.cpp">
-      <Filter>Source Files\Component\Actual Components</Filter>
-    </ClCompile>
     <ClCompile Include="RenderSystem.cpp">
       <Filter>Source Files\System\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="CameraComponent.cpp">
+    <ClCompile Include="ComponentListInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Component\Actual Components</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentListInterface.cpp">
+    <ClCompile Include="Position.cpp">
+      <Filter>Source Files\Component\Actual Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files\Component\Actual Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,17 +119,8 @@
     <ClInclude Include="System.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="PositionComponent.h">
-      <Filter>Header Files\Component\Actual Components</Filter>
-    </ClInclude>
-    <ClInclude Include="RectangleComponent.h">
-      <Filter>Header Files\Component\Actual Components</Filter>
-    </ClInclude>
     <ClInclude Include="RenderSystem.h">
       <Filter>Header Files\System\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraComponent.h">
-      <Filter>Header Files\Component\Actual Components</Filter>
     </ClInclude>
     <ClInclude Include="components.h">
       <Filter>Header Files\Component\Actual Components</Filter>
@@ -136,6 +130,18 @@
     </ClInclude>
     <ClInclude Include="ComponentList.h">
       <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\Component\Actual Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

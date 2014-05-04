@@ -39,7 +39,7 @@ public:
 	{
 		return this->components_[T::getTypeID()][id];
 	}
-
+	
 	template <class T>
 	bool addComponent(entity_id id, T component)
 	{
@@ -59,6 +59,7 @@ public:
 
 		return true;
 	}
+
 	/**
 		Gets a set of entities that have all of the components flagged by type.
 		@param types The types of components to check for.
@@ -72,13 +73,39 @@ public:
 		@return A pointer to the enitities that qualified.
 	*/
 	entity_id getFirstEntity(component_type_bit type);
+
+	template <class T>
+	bool hasComponent(entity_id id) const
+	{
+		if(this->freeIds_.count(id) > 0)
+			return false;
+
+		return (this->currentComponents_[id] & T::getTypeBitID()) == T::getTypeBitID();
+	}
 	
+	bool exists(component_type_bit type) const;
+
 private:
-	std::vector<Entity> entities_;
 	std::unordered_set<entity_id> freeIds_;
 
 	std::vector<std::vector<component_id>> components_;
 	std::vector<component_type_bit> currentComponents_;
+
+	friend class Engine;
+
+	bool addRawComponent(entity_id id, component_id component, component_type_id typeId)
+	{
+		
+		this->currentComponents_[id] |= 1 << typeId;
+		this->components_[typeId][id] = component;
+
+		return true;
+	}
+
+	component_id getRawComponent(entity_id id, component_type_id type)
+	{
+		return this->components_[type][id];
+	}
 };
 
 /*

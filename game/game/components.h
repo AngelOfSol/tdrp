@@ -1,3 +1,3 @@
-#include "PositionComponent.h"
-#include "RectangleComponent.h"
-#include "CameraComponent.h"
+#include "Position.h"
+#include "Rectangle.h"
+#include "Camera.h"

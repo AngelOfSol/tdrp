@@ -71,33 +71,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Angle.cpp" />
-    <ClCompile Include="CameraComponent.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentEngine.cpp" />
     <ClCompile Include="ComponentListInterface.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityEngine.cpp" />
     <ClCompile Include="pi.cpp" />
-    <ClCompile Include="PositionComponent.cpp" />
-    <ClCompile Include="RectangleComponent.cpp" />
+    <ClCompile Include="Position.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SuperSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Angle.h" />
-    <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentEngine.h" />
     <ClInclude Include="ComponentID.h" />
     <ClInclude Include="ComponentList.h" />
     <ClInclude Include="ComponentListInterface.h" />
     <ClInclude Include="components.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityEngine.h" />
     <ClInclude Include="pi.h" />
-    <ClInclude Include="PositionComponent.h" />
-    <ClInclude Include="RectangleComponent.h" />
+    <ClInclude Include="Position.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="SuperSystem.h" />
     <ClInclude Include="System.h" />

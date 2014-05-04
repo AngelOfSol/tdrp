@@ -32,6 +32,8 @@ public:
 		this->validateLists<T>();
 		return dynamic_cast<T&>(this->componentLists_[typeId]->getComponent(id));
 	}
+
+	friend class Engine; 
 	
 private:
 	std::vector<ComponentListInterface*> componentLists_;
@@ -47,6 +49,21 @@ private:
 		{
 			this->componentLists_[typeId] = new ComponentList<T>();
 		}
+	}
+
+	component_id getNewRawComponent(component_type_id type)
+	{
+		return this->componentLists_[type]->getNewComponent().getId();
+	}
+
+	Component& getRawComponent(component_id id, component_type_id type)
+	{
+		return this->componentLists_[type]->getComponent(id);
+	}
+
+	void deleteRawComponent(component_id id, component_type_id type)
+	{
+		this->componentLists_[type]->deleteComponent(id);
 	}
 };
 

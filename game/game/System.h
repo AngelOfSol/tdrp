@@ -1,13 +1,12 @@
 #pragma once
 
-#include "EntityEngine.h"
-#include "ComponentEngine.h"
+#include "Engine.h"
 
 template <class T>
 class System
 {
 public:
-	System(EntityEngine& engine, ComponentEngine& componentEngine):entitiesList_(engine), componentsList_(componentEngine)
+	System(Engine& engine):engine_(engine)
 	{
 	};
 	virtual ~System(void)
@@ -17,7 +16,6 @@ public:
 	virtual void stop() = 0;
 	virtual void update(T timeStep) = 0;
 protected:
-	EntityEngine& entitiesList_;
-	ComponentEngine& componentsList_;
+	Engine& engine_;
 };
 

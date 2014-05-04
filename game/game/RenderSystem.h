@@ -11,7 +11,7 @@ class RenderSystem :
 public:
 	~RenderSystem(void);
 	
-	RenderSystem(EntityEngine& engine, ComponentEngine& componentEngine, sf::RenderWindow& renderWindow);
+	RenderSystem(Engine& engine, sf::RenderWindow& renderWindow);
 	void start();
 	void stop();
 	void update(sf::Time timeStep);

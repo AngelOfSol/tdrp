@@ -1,7 +1,7 @@
 #include "RenderSystem.h"
 
 
-RenderSystem::RenderSystem(EntityEngine& engine, ComponentEngine& componentEngine, sf::RenderWindow& renderWindow):System(engine, componentEngine), window(renderWindow)
+RenderSystem::RenderSystem(Engine& engine, sf::RenderWindow& renderWindow):System(engine), window(renderWindow)
 {
 }
 
@@ -21,27 +21,28 @@ void RenderSystem::update(sf::Time timeStep)
     window.clear(sf::Color(255, 255, 255, 255));
 	// Draw stuff
 
-	std::vector<entity_id> drawables = this->entitiesList_.getEntitys(PositionComponent::getTypeBitID() | RectangleComponent::getTypeBitID());
+	std::vector<entity_id> drawables = this->engine_.getEntitys(Position::getTypeBitID() | Rectangle::getTypeBitID());
 	
 	sf::RenderStates rs;
 
-	entity_id camera = this->entitiesList_.getFirstEntity(CameraComponent::getTypeBitID());
+	if(this->engine_.exists(Camera::getTypeBitID()))
+	{
+		entity_id camera = this->engine_.getFirstEntity(Camera::getTypeBitID());
+		const Camera& cam = this->engine_.getComponentOf<Camera>(camera);
 
-	const CameraComponent& cam = this->componentsList_.getComponent<CameraComponent>(this->entitiesList_.getComponent<CameraComponent>(camera));
 
+		sf::Vector2f recenter((float)window.getSize().x, (float)window.getSize().y);
+		recenter /= 2.0f;
 
-	sf::Vector2f recenter((float)window.getSize().x, (float)window.getSize().y);
-	recenter /= 2.0f;
-
-	rs.transform.translate(recenter);
+		rs.transform.translate(recenter);
 	
-	rs.transform.rotate(cam.cameraAngle.degrees());
-	rs.transform.translate(-cam);
-
+		rs.transform.rotate(cam.cameraAngle.degrees());
+		rs.transform.translate(-cam);
+	}
 	for(auto iter = drawables.begin(); iter != drawables.end(); iter++)
 	{
-		const PositionComponent& pos = this->componentsList_.getComponent<PositionComponent>(this->entitiesList_.getComponent<PositionComponent>(*iter));
-		const RectangleComponent& rec = this->componentsList_.getComponent<RectangleComponent>(this->entitiesList_.getComponent<RectangleComponent>(*iter));
+		const Position& pos = this->engine_.getComponentOf<Position>(*iter);
+		const Rectangle& rec = this->engine_.getComponentOf<Rectangle>(*iter);
 		rs.transform.translate(pos);
 		sf::RectangleShape toDraw = sf::RectangleShape(rec);
 		toDraw.setFillColor(sf::Color::Black);

@@ -39,7 +39,7 @@ entity_id EntityEngine::getNewEntity(void)
 bool EntityEngine::deleteEntity(entity_id e_id)
 {
 	// if the id is free and isn't out of bounds, add it to the free list
-	if(this->freeIds_.count(e_id) == 0 && e_id < this->entities_.size() && e_id >= 0)
+	if(this->freeIds_.count(e_id) == 0 && e_id < this->currentComponents_.size() && e_id >= 0)
 	{
 		this->freeIds_.insert(e_id);
 		for(unsigned int i = 0; i < this->components_.size(); i++)
@@ -72,7 +72,7 @@ std::vector<entity_id> EntityEngine::getEntitys(component_type_bit c_id)
 	return ret;
 }
 
-entity_id EntityEngine::getFirstEntity(component_id c_id)
+entity_id EntityEngine::getFirstEntity(component_type_bit c_id)
 {
 	for(unsigned int i = 0; i < this->currentComponents_.size(); i++)
 	{
@@ -83,5 +83,19 @@ entity_id EntityEngine::getFirstEntity(component_id c_id)
 			return i;
 		}
 	}
-	return 0;
+	return -1;
+}
+
+bool EntityEngine::exists(component_type_bit c_id) const
+{
+	for(unsigned int i = 0; i < this->currentComponents_.size(); i++)
+	{
+		// ask the entity if it has the specified components
+		// make sure the entity isn't deleted
+		if(this->freeIds_.count(i) == 0 && (this->currentComponents_[i] & c_id) == c_id)
+		{
+			return true;
+		}
+	}
+	return false;
 }

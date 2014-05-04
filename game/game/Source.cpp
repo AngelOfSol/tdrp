@@ -6,6 +6,7 @@
 #include "ComponentEngine.h"
 #include "EntityEngine.h"
 #include "ComponentList.h"
+#include "Engine.h"
 int main()
 {
 	
@@ -13,29 +14,26 @@ int main()
 	settings.antialiasingLevel = 8;
 	sf::RenderWindow window(sf::VideoMode(640, 480), "Test", sf::Style::Default, settings);
 	
-	ComponentEngine comp;
-	EntityEngine ent;
+	Engine engine;
+	
+	entity_id block = engine.getNewEntity();
+	
+	engine.addComponentTo<Position>(block);
+	engine.addComponentTo<Rectangle>(block);
 
-	
-	entity_id block = ent.getNewEntity();
-	
-	PositionComponent& pos = comp.getNewComponent<PositionComponent>();
-	RectangleComponent& rec = comp.getNewComponent<RectangleComponent>();
-	
+	Position& pos = engine.getComponentOf<Position>(block);
+	Rectangle& rec = engine.getComponentOf<Rectangle>(block);
 
 	pos.x = 0;
 	pos.y = 0;
 
 	rec.x = 20;
 	rec.y = 20;
-
-	ent.addComponent(block, pos);
-	ent.addComponent(block, rec);
 	
-	entity_id block2 = ent.getNewEntity();
+	entity_id block2 = engine.clone(block);
 
-	PositionComponent& pos2 = comp.getNewComponent<PositionComponent>();
-	RectangleComponent& rec2 = comp.getNewComponent<RectangleComponent>();
+	Position& pos2 = engine.getComponentOf<Position>(block2);
+	Rectangle& rec2 = engine.getComponentOf<Rectangle>(block2);
 
 	pos2.x = 100;
 	pos2.y = 100;
@@ -43,23 +41,18 @@ int main()
 	rec2.x = 30;
 	rec2.y = 30;
 
-	
-	ent.addComponent(block2, pos2);
-	ent.addComponent(block2, rec2);
-	
-	entity_id camera = ent.getNewEntity();
+	entity_id camera = engine.getNewEntity();
 
+	engine.addComponentTo<Camera>(camera);
 
-	CameraComponent& cam = comp.getNewComponent<CameraComponent>();
+	Camera& cam = engine.getComponentOf<Camera>(camera);
 
 	cam.x = 0;
 	cam.y = 0;
 
 	cam.cameraAngle = Angle<float>(DEGREE, 0);
 
-	ent.addComponent(camera, cam);
-
-	RenderSystem rend(ent, comp, window);
+	RenderSystem rend(engine, window);
 	
 	sf::Clock timer;
 
