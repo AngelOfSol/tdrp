@@ -77,7 +77,6 @@
     <ClCompile Include="ComponentEngine.cpp" />
     <ClCompile Include="ComponentListInterface.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityEngine.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InputData.cpp" />
@@ -102,7 +101,6 @@
     <ClInclude Include="ComponentListInterface.h" />
     <ClInclude Include="components.h" />
     <ClInclude Include="Engine.h" />
-    <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityEngine.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputData.h" />

@@ -22,21 +22,21 @@ void Physics::stop()
 void Physics::update(sf::Time elapsed)
 {
 	
-	std::vector<entity_id> accelerators = this->engine_.getEntitys(Acceleration::getTypeBitID() | Velocity::getTypeBitID());
+	auto accelerators = this->engine_.getHandles(Acceleration::getTypeBitID() | Velocity::getTypeBitID());
 
 	for(auto iter = accelerators.begin(); iter != accelerators.end(); iter++)
 	{
-		Acceleration& accel = this->engine_.getComponentOf<Acceleration>(*iter);
-		Velocity& vel = this->engine_.getComponentOf<Velocity>(*iter);
+		Acceleration& accel = iter->get<Acceleration>();
+		Velocity& vel = iter->get<Velocity>();
 		vel += accel * elapsed.asSeconds();
 	}
 
-	std::vector<entity_id> movables = this->engine_.getEntitys(Position::getTypeBitID() | Velocity::getTypeBitID());
+	auto movables = this->engine_.getHandles(Position::getTypeBitID() | Velocity::getTypeBitID());
 	
 	for(auto iter = movables.begin(); iter != movables.end(); iter++)
 	{
-		Position& pos = this->engine_.getComponentOf<Position>(*iter);
-		Velocity& vel = this->engine_.getComponentOf<Velocity>(*iter);
+		Position& pos = iter->get<Position>();
+		Velocity& vel = iter->get<Velocity>();
 		pos += vel * elapsed.asSeconds();
 		if(pos.x < -320)
 			pos.x = 320;
@@ -44,11 +44,13 @@ void Physics::update(sf::Time elapsed)
 			pos.x = -320;
 	}
 
-	entity_id player = this->engine_.getFirstEntity(Player::getTypeBitID());
+	auto player = this->engine_.getFirstHandle(Player::getTypeBitID());
 
-	Player& playerc = this->engine_.getComponentOf<Player>(player);
+	Player& playerc = player.get<Player>();
 
-	Velocity& vel = this->engine_.getComponentOf<Velocity>(player);
+	Velocity& vel = player.get<Velocity>();
+
+
 	if(jck::vector::mag(vel) > 1)
 		playerc.rotation = jck::vector::atan(vel);
 	if(jck::vector::mag(vel) > 240)
@@ -60,5 +62,6 @@ void Physics::update(sf::Time elapsed)
 
 
 	}
+	std::cout << jck::vector::mag(vel) << std::endl;
 
 }

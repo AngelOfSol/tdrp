@@ -60,9 +60,6 @@
     <ClCompile Include="ComponentEngine.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\Entity</Filter>
-    </ClCompile>
     <ClCompile Include="EntityEngine.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
@@ -124,9 +121,6 @@
     </ClInclude>
     <ClInclude Include="ComponentID.h">
       <Filter>Header Files\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\Entity</Filter>
     </ClInclude>
     <ClInclude Include="EntityEngine.h">
       <Filter>Header Files\Entity</Filter>

@@ -18,33 +18,33 @@ int main()
 	
 	Engine engine;
 	
-	entity_id inputID = engine.getNewEntity();
+	auto inputEntity = engine.getNewHandle();
 
-	engine.addComponentTo<InputData>(inputID);
+	inputEntity.add<InputData>();
 
-	InputData& input = engine.getComponentOf<InputData>(inputID);
+	InputData& input = inputEntity.get<InputData>();
 
-	entity_id player = engine.getNewEntity();
+	auto player = engine.getNewHandle();
 	
-	engine.addComponentTo<Position>(player);
+	player.add<Position>();
 	
-	engine.getComponentOf<Position>(player).x = 0;
-	engine.getComponentOf<Position>(player).y = 0;
+	player.get<Position>().x = 0;
+	player.get<Position>().y = 0;
 
-	engine.addComponentTo<Rectangle>(player);
+	player.add<Rectangle>();
 	
-	engine.getComponentOf<Rectangle>(player).x = 20;
-	engine.getComponentOf<Rectangle>(player).y = 20;
+	player.get<Rectangle>().x = 20;
+	player.get<Rectangle>().y = 20;
 
-	engine.addComponentTo<Acceleration>(player);
-	engine.addComponentTo<Velocity>(player);
-	engine.addComponentTo<Player>(player);
+	player.add<Acceleration>();
+	player.add<Velocity>();
+	player.add<Player>();
 
-	entity_id camera = engine.getNewEntity();
+	auto camera = engine.getNewHandle();
 
-	engine.addComponentTo<Camera>(camera);
+	camera.add<Camera>();
 
-	Camera& cam = engine.getComponentOf<Camera>(camera);
+	Camera& cam = camera.get<Camera>();
 
 	cam.x = 0;
 	cam.y = 0;

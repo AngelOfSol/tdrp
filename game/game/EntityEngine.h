@@ -2,8 +2,9 @@
 
 #include <vector>
 #include <unordered_set>
+#include "ComponentEngine.h"
 
-#include "Entity.h"
+typedef unsigned long int entity_id;
 
 /**
 	@author Julien Kilian

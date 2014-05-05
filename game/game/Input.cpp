@@ -20,15 +20,15 @@ void Input::stop()
 
 void Input::update(sf::Time elapsed)
 {
-	entity_id playerID = this->engine_.getFirstEntity(Player::getTypeBitID());
+	auto playerE = this->engine_.getFirstHandle(Player::getTypeBitID());
 
-	InputData input = this->engine_.getComponentOf<InputData>(this->engine_.getFirstEntity(InputData::getTypeBitID()));
+	InputData input = this->engine_.getFirstHandle(InputData::getTypeBitID()).get<InputData>();
 
-	Player& player = this->engine_.getComponentOf<Player>(playerID);
+	Player& player = playerE.get<Player>();
 
-	Acceleration& accel = this->engine_.getComponentOf<Acceleration>(playerID);
+	Acceleration& accel = playerE.get<Acceleration>();
 	
-	Velocity& vel = this->engine_.getComponentOf<Velocity>(playerID);
+	Velocity& vel = playerE.get<Velocity>();
 
 	if(input.upKey)
 	{
@@ -46,10 +46,10 @@ void Input::update(sf::Time elapsed)
 
 	if(input.rightKey)
 	{
-		accel += 2.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, 90.0f));
+		accel += 5.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, 100.0f));
 	} else if(input.leftKey)
 	{
-		accel += 2.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, -90.0f));
+		accel += 5.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, -100.0f));
 	}
 
 

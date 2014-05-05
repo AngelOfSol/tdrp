@@ -12,6 +12,7 @@ public:
 
 	entity_id getNewEntity(void) { return this->entities_.getNewEntity(); };
 
+
 	template <class T>
 	component_id getComponent(entity_id id)	{ return this->getComponent<T>(id)};
 
@@ -80,7 +81,74 @@ public:
 		}
 		return this->entities_.deleteEntity(id); 
 	};
+	
+	class Entity
+	{
+	public:
+		template <class T>
+		bool add()
+		{
+			return this->engine_.addComponentTo<T>(this->id_);
+		}
+		template <class T>
+		T& get()
+		{
+			return this->engine_.getComponentOf<T>(this->id_);
+		}
+		Entity clone()
+		{
+			return Entity(this->engine_.clone(this->id_), engine_);
+		}
+		template <class T>
+		bool has()
+		{
+			return this->engine_.hasComponent<T>(this->id_);
+		}
+		bool hasTypes(component_type_bit ctb)
+		{
+			return this->engine_.hasComponentBit(this->id_, ctb);
+		}
+		~Entity()
+		{
+		}
+	private:
+		friend class Engine;
+		Entity(entity_id id, Engine& engine):id_(id), engine_(engine)
+		{
+		}
+		entity_id id_;
+		Engine& engine_;
+	};
 
+	Entity getNewHandle(void) 
+	{ 
+		return Entity(this->entities_.getNewEntity(), *this); 
+	};
+	Entity getHandle(entity_id eid)
+	{
+		return Entity(eid, *this);
+	}
+	bool deleteHandle(Entity e)
+	{
+		this->deleteEntity(e.id_);
+	}
+	Entity getFirstHandle(component_type_bit ctb)
+	{
+		return Entity(this->getFirstEntity(ctb), *this);
+	}
+	std::vector<Entity> getHandles(component_type_bit ctb)
+	{
+		std::vector<entity_id> ids = this->getEntitys(ctb);
+
+		std::vector<Entity> ret;
+
+		for(auto iter = ids.begin(); iter != ids.end(); iter++)
+		{
+			ret.push_back(Entity(*iter, *this));
+		}
+
+		return ret;
+	}
 private:
 	ComponentEngine components_;
 	EntityEngine entities_;

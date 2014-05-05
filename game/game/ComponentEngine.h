@@ -4,7 +4,6 @@
 #include <unordered_set>
 
 #include "ComponentList.h"
-#include "Entity.h"
 class ComponentEngine
 {
 public:
