@@ -3,7 +3,7 @@
 #include "Angle.h"
 #include <SFML\System.hpp>
 class Camera :
-	public ComponentID<Camera>, public sf::Vector2f
+	public ComponentID<Camera>
 {
 public:
 	Camera(void);

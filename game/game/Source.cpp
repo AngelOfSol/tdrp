@@ -43,13 +43,12 @@ int main()
 	auto camera = engine.getNewHandle();
 
 	camera.add<Camera>();
+	camera.add<Position>();
 
-	Camera& cam = camera.get<Camera>();
+	camera.get<Position>().x = 0;
+	camera.get<Position>().y = 0;
 
-	cam.x = 0;
-	cam.y = 0;
-
-	cam.cameraAngle = Angle<float>(DEGREE, 0);
+	camera.get<Camera>().cameraAngle = Angle<float>(DEGREE, 0);
 	
 	std::vector<System<sf::Time>*> systems;
 

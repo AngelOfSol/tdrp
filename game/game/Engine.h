@@ -12,7 +12,6 @@ public:
 
 	entity_id getNewEntity(void) { return this->entities_.getNewEntity(); };
 
-
 	template <class T>
 	component_id getComponent(entity_id id)	{ return this->getComponent<T>(id)};
 

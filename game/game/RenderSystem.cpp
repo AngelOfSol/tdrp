@@ -27,9 +27,9 @@ void RenderSystem::update(sf::Time timeStep)
 
 	if(this->engine_.exists(Camera::getTypeBitID()))
 	{
-		auto camera = this->engine_.getFirstHandle(Camera::getTypeBitID());
+		auto camera = this->engine_.getFirstHandle(Camera::getTypeBitID() | Position::getTypeBitID());
 		const Camera& cam = camera.get<Camera>();
-
+		const Position& pos = camera.get<Position>();
 
 		sf::Vector2f recenter((float)window.getSize().x, (float)window.getSize().y);
 		recenter /= 2.0f;
@@ -37,7 +37,7 @@ void RenderSystem::update(sf::Time timeStep)
 		rs.transform.translate(recenter);
 	
 		rs.transform.rotate(cam.cameraAngle.degrees());
-		rs.transform.translate(-cam);
+		rs.transform.translate(-pos);
 	}
 	for(auto iter = drawables.begin(); iter != drawables.end(); iter++)
 	{
