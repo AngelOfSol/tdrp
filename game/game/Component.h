@@ -2,10 +2,7 @@
 #include <unordered_map>
 #include <string>
 
-typedef unsigned long int component_id;
-typedef unsigned long int component_type_id;
-typedef unsigned long int component_type_bit;
-
+#include "typedefs.h"
 
 /**
 	@author Julien Kilian

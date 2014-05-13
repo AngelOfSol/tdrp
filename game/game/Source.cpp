@@ -9,9 +9,10 @@
 #include "EntityEngine.h"
 #include "ComponentList.h"
 #include "Engine.h"
+#include "mdarray.h"
 int main()
 {
-	
+
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
 	sf::RenderWindow window(sf::VideoMode(640, 480), "Test", sf::Style::Default, settings);
@@ -19,6 +20,7 @@ int main()
 	Engine engine;
 	
 	auto inputEntity = engine.getNewHandle();
+	
 
 	inputEntity.add<InputData>();
 
@@ -49,7 +51,6 @@ int main()
 	camera.get<Position>().y = 0;
 
 	camera.get<Camera>().cameraAngle = Angle<float>(DEGREE, 0);
-	
 	std::vector<System<sf::Time>*> systems;
 
 	

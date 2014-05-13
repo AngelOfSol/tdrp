@@ -173,5 +173,8 @@
     <ClInclude Include="Input.h">
       <Filter>Header Files\System\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="mdarray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
