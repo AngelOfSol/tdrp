@@ -38,10 +38,7 @@ void Physics::update(sf::Time elapsed)
 		Position& pos = iter->get<Position>();
 		Velocity& vel = iter->get<Velocity>();
 		pos += vel * elapsed.asSeconds();
-		if(pos.x < -320)
-			pos.x = 320;
-		if(pos.x > 320)
-			pos.x = -320;
+		
 	}
 
 	auto player = this->engine_.getFirstHandle(Player::getTypeBitID());
@@ -52,7 +49,10 @@ void Physics::update(sf::Time elapsed)
 
 
 	if(jck::vector::mag(vel) > 1)
+	{
 		playerc.rotation = jck::vector::atan(vel);
+		player.get<Camera>().cameraAngle = -playerc.rotation - Angle<float>(DEGREE, 90);
+	}
 	if(jck::vector::mag(vel) > 240)
 	{
 		sf::Vector2f renorm = jck::vector::normalize(vel) * 240.0f;

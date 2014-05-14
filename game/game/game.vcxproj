@@ -80,6 +80,7 @@
     <ClCompile Include="EntityEngine.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InputData.cpp" />
+    <ClCompile Include="LevelData.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="pi.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="EntityEngine.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputData.h" />
+    <ClInclude Include="LevelData.h" />
     <ClInclude Include="mdarray.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="pi.h" />
@@ -113,6 +115,7 @@
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="SuperSystem.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="typedefs.h" />
     <ClInclude Include="VectorExtensions.h" />
     <ClInclude Include="Velocity.h" />
   </ItemGroup>

@@ -41,23 +41,41 @@ int main()
 	player.add<Acceleration>();
 	player.add<Velocity>();
 	player.add<Player>();
+	player.add<Camera>();
 
-	auto camera = engine.getNewHandle();
-
-	camera.add<Camera>();
-	camera.add<Position>();
-
-	camera.get<Position>().x = 0;
-	camera.get<Position>().y = 0;
-
-	camera.get<Camera>().cameraAngle = Angle<float>(DEGREE, 0);
 	std::vector<System<sf::Time>*> systems;
+
+	auto levelData = engine.getNewHandle();
+
+	levelData.add<LevelData>();
+
+	LevelData& data = levelData.get<LevelData>();
+
+	data.indices = new md_array<int, 2>(100, 100);
+
+	auto tileEntity = engine.getNewEntity();
+
+	data.ids.push_back(tileEntity);
+
+	for(int i = 0; i < data.indices->getSize(0); i++)
+	{
+		for(int j = 0; j < data.indices->getSize(0); j++)
+		{
+			data.indices->get(i, j) = 0;
+		}
+	}
+
+	data.length = 32;
+
+
 
 	
 	systems.push_back(new Input(engine));
 	systems.push_back(new Physics(engine));
 	systems.push_back(new RenderSystem(engine, window));
 	
+
+
 	sf::Clock timer;
 
 	sf::Time minimiumFrameTime = sf::seconds(1.0f / 60.0f);

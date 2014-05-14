@@ -46,10 +46,10 @@ void Input::update(sf::Time elapsed)
 
 	if(input.rightKey)
 	{
-		accel += 5.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, 100.0f));
+		accel += 2.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, 100.0f));
 	} else if(input.leftKey)
 	{
-		accel += 5.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, -100.0f));
+		accel += 2.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, -100.0f));
 	}
 
 
