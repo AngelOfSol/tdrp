@@ -9,6 +9,7 @@
 #include "EntityEngine.h"
 #include "ComponentList.h"
 #include "Engine.h"
+#include "CollisionDetection.h"
 #include "mdarray.h"
 int main()
 {
@@ -38,10 +39,21 @@ int main()
 	player.get<Rectangle>().x = 20;
 	player.get<Rectangle>().y = 20;
 
+	player.add<Player>();
+
+	Player& playerData = player.get<Player>();
+
+	playerData.accel = 120.0f;
+	playerData.brakes = -0.99f;
+	playerData.turnAngle = Angle<float>(DEGREE, 100.0f);
+	playerData.turnMultiplier = 2.0f;
+	playerData.friction = 0.3f;
+	playerData.maxSpeed = 600.0f;
+
 	player.add<Acceleration>();
 	player.add<Velocity>();
-	player.add<Player>();
 	player.add<Camera>();
+	player.add<Rotation>();
 
 	std::vector<System<sf::Time>*> systems;
 
@@ -51,11 +63,13 @@ int main()
 
 	LevelData& data = levelData.get<LevelData>();
 
-	data.indices = new md_array<int, 2>(100, 100);
-
+	data.indices = new md_array<int, 2>(400, 400);
+	
 	auto tileEntity = engine.getNewEntity();
-
+	auto collidedTileEntity = engine.getNewEntity();
+	
 	data.ids.push_back(tileEntity);
+	data.ids.push_back(collidedTileEntity);
 
 	for(int i = 0; i < data.indices->getSize(0); i++)
 	{
@@ -73,6 +87,7 @@ int main()
 	systems.push_back(new Input(engine));
 	systems.push_back(new Physics(engine));
 	systems.push_back(new RenderSystem(engine, window));
+	systems.push_back(new CollisionDetection(engine));
 	
 
 

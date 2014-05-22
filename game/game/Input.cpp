@@ -20,36 +20,46 @@ void Input::stop()
 
 void Input::update(sf::Time elapsed)
 {
+	// Grab relevant player data
+
 	auto playerE = this->engine_.getFirstHandle(Player::getTypeBitID());
 
 	InputData input = this->engine_.getFirstHandle(InputData::getTypeBitID()).get<InputData>();
 
-	Player& player = playerE.get<Player>();
+	Rotation& rotation = playerE.get<Rotation>();
 
 	Acceleration& accel = playerE.get<Acceleration>();
 	
 	Velocity& vel = playerE.get<Velocity>();
 
+	const Player& data = playerE.get<Player>();
+
+	// Accelerate player in his direction if holding forwards, otherwise brake.
+
 	if(input.upKey)
 	{
-		accel.x = 120.0f * cosf(player.rotation);
-		accel.y = 120.0f * sinf(player.rotation);
+		accel.x = data.accel * cosf(rotation.value);
+		accel.y = data.accel * sinf(rotation.value);
 	} else if(input.downKey)
 	{
-		accel.x = -0.99f * vel.x;
-		accel.y = -0.99f * vel.y;
+		accel.x = data.brakes * vel.x;
+		accel.y = data.brakes * vel.y;
 	} else
 	{
 		accel.x = 0;
 		accel.y = 0;
 	}
 
+	// Turn the player while reducing velocity
+
+	// Angle will determine how fast a turn is made, and how much velocity is kept through out the turn.
+
 	if(input.rightKey)
 	{
-		accel += 2.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, 100.0f));
+		accel += data.turnMultiplier * jck::vector::rotate(vel, data.turnAngle);
 	} else if(input.leftKey)
 	{
-		accel += 2.0f * jck::vector::rotate(vel, Angle<float>(DEGREE, -100.0f));
+		accel += data.turnMultiplier * jck::vector::rotate(vel, -data.turnAngle);
 	}
 
 

@@ -1,19 +1,17 @@
 #pragma once
 #include "system.h"
-#include "components.h"
 #include "VectorExtensions.h"
-#include <iostream>
+#include "components.h"
 #include <SFML\System.hpp>
-/*
-	A system to handle physics.
-*/
+#include <algorithm>
+#include <iostream>
 
-class Physics :
+class CollisionDetection :
 	public System<sf::Time>
 {
 public:
-	~Physics(void);
-	Physics(Engine& engine);
+	~CollisionDetection(void);
+	CollisionDetection(Engine& engine);
 	void start();
 	void stop();
 	void update(sf::Time timeStep);

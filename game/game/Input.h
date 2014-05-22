@@ -5,7 +5,9 @@
 #include "components.h"
 #include <iostream>
 #include <SFML\Window.hpp>
-
+/*
+	A system to handle input.
+*/
 class Input :
 	public System<sf::Time>
 {

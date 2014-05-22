@@ -22,6 +22,8 @@ void Physics::stop()
 void Physics::update(sf::Time elapsed)
 {
 	
+	// Accelerate things with velocities
+
 	auto accelerators = this->engine_.getHandles(Acceleration::getTypeBitID() | Velocity::getTypeBitID());
 
 	for(auto iter = accelerators.begin(); iter != accelerators.end(); iter++)
@@ -30,6 +32,8 @@ void Physics::update(sf::Time elapsed)
 		Velocity& vel = iter->get<Velocity>();
 		vel += accel * elapsed.asSeconds();
 	}
+
+	// Move things with positions
 
 	auto movables = this->engine_.getHandles(Position::getTypeBitID() | Velocity::getTypeBitID());
 	
@@ -41,27 +45,30 @@ void Physics::update(sf::Time elapsed)
 		
 	}
 
+	// Mantain player camera angle and placement
+	// Mantain player max speed
+
 	auto player = this->engine_.getFirstHandle(Player::getTypeBitID());
 
-	Player& playerc = player.get<Player>();
+	Rotation& playerAngle = player.get<Rotation>();
 
 	Velocity& vel = player.get<Velocity>();
 
+	const Player& data = player.get<Player>();
 
 	if(jck::vector::mag(vel) > 1)
 	{
-		playerc.rotation = jck::vector::atan(vel);
-		player.get<Camera>().cameraAngle = -playerc.rotation - Angle<float>(DEGREE, 90);
+		playerAngle.value = jck::vector::atan(vel);
 	}
-	if(jck::vector::mag(vel) > 240)
+	if(jck::vector::mag(vel) > data.maxSpeed)
 	{
-		sf::Vector2f renorm = jck::vector::normalize(vel) * 240.0f;
+		sf::Vector2f renorm = jck::vector::normalize(vel) * data.maxSpeed;
 
 		vel.x = renorm.x;
 		vel.y = renorm.y;
 
 
 	}
-	std::cout << jck::vector::mag(vel) << std::endl;
+	//std::cout << jck::vector::mag(vel) << std::endl;
 
 }

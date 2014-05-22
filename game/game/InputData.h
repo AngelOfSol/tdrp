@@ -1,5 +1,11 @@
 #pragma once
 #include "componentid.h"
+
+/*
+	Flags an enitity as containing input data.
+*/
+
+
 class InputData :
 	public ComponentID<InputData>
 {

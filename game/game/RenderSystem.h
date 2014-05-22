@@ -1,11 +1,18 @@
 #pragma once
 #include <SFML\System.hpp>
 #include "system.h"
+#include "VectorExtensions.h"
 #include "components.h"
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 #include <SFML\Window.hpp>
 #include <iostream>
+#include <algorithm>
+
+/*
+	A system to handle rendering.
+*/
+
 class RenderSystem :
 	public System<sf::Time>
 {

@@ -1,5 +1,12 @@
 #pragma once
 #include <array>
+
+/*
+	A multi dimensional array class of S-dimension holding type T.
+
+	Must be initialized with the sizes desired.
+*/
+
 template <class T, int S> 
 class md_array
 {

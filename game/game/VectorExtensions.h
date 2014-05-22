@@ -43,5 +43,35 @@ namespace jck
 			ret.y = rhs.x * sin(angle.radians()) + rhs.y * cos(angle.radians());
 			return ret;
 		}
+		
+		template <class T>
+		void createBounds(const sf::Vector2<T>& base, const sf::Vector2<T>& modifier, sf::Vector2<T>* lowerBound, sf::Vector2<T>* upperBound)
+		{
+			lowerBound->x = std::min(base.x - modifier.x, base.x + modifier.x);
+			lowerBound->y = std::min(base.y - modifier.y, base.y + modifier.y);
+
+			upperBound->x = std::max(base.x - modifier.x, base.x + modifier.x);
+			upperBound->y = std::max(base.y - modifier.y, base.y + modifier.y);
+		}
+		template <class T>
+		sf::Vector2<T> max(const sf::Vector2<T>& lhs, const sf::Vector2<T>& rhs)
+		{
+			sf::Vector2<T> ret;
+			
+			ret.x = std::max(lhs.x, rhs.x);
+			ret.y = std::max(lhs.y, rhs.y);
+
+			return ret;
+		}
+		template <class T>
+		sf::Vector2<T> min(const sf::Vector2<T>& lhs, const sf::Vector2<T>& rhs)
+		{
+			sf::Vector2<T> ret;
+			
+			ret.x = std::min(lhs.x, rhs.x);
+			ret.y = std::min(lhs.y, rhs.y);
+
+			return ret;
+		}
 	}
 }

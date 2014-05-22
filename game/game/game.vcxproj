@@ -71,8 +71,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Acceleration.cpp" />
-    <ClCompile Include="Angle.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentEngine.cpp" />
     <ClCompile Include="ComponentListInterface.cpp" />
@@ -87,6 +87,7 @@
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="Rotation.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SuperSystem.cpp" />
     <ClCompile Include="Velocity.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="Acceleration.h" />
     <ClInclude Include="Angle.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentEngine.h" />
     <ClInclude Include="ComponentID.h" />
@@ -113,6 +115,7 @@
     <ClInclude Include="Position.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="Rotation.h" />
     <ClInclude Include="SuperSystem.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="typedefs.h" />

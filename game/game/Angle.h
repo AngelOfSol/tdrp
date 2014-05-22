@@ -7,6 +7,12 @@ enum ANGLE_MODE
 	DEGREE
 };
 
+/*
+	An angle class that keeps all angles between -pi and +pi.
+
+	Also supports conversions to and from degrees.
+*/
+
 template <class T>
 class Angle
 {
@@ -108,6 +114,14 @@ public:
 	{
 		Angle<T> ret = *this;
 		ret -= rhs;
+		return ret;
+	}
+
+	Angle<T> operator -() const
+	{
+		Angle<T> ret;
+		ret.rValue_ = -this->rValue_;
+		ret.dValue_ = -this->dValue_;
 		return ret;
 	}
 
