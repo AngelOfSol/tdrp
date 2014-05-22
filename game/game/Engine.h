@@ -94,18 +94,33 @@ public:
 		{
 			return this->engine_.getComponentOf<T>(this->id_);
 		}
-		Entity clone()
+		template <class T>
+		const T& get() const
+		{
+			return this->engine_.getComponentOf<T>(this->id_);
+		}
+		Entity clone() const
 		{
 			return Entity(this->engine_.clone(this->id_), engine_);
 		}
 		template <class T>
-		bool has()
+		bool has() const
 		{
 			return this->engine_.hasComponent<T>(this->id_);
 		}
-		bool hasTypes(component_type_bit ctb)
+		bool hasTypes(component_type_bit ctb) const
 		{
 			return this->engine_.hasComponentBit(this->id_, ctb);
+		}
+
+		Engine& getEngine() const
+		{
+			return this->engine_;
+		}
+
+		entity_id getID() const
+		{
+			return this->id_;
 		}
 		~Entity()
 		{

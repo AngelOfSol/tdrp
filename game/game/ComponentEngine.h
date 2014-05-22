@@ -14,7 +14,8 @@ public:
 	{
 		component_type_id typeId = T::getTypeID();
 		this->validateLists<T>();
-		return dynamic_cast<T&>(this->componentLists_[typeId]->getNewComponent());
+		Component * temp = &this->componentLists_[typeId]->getNewComponent();
+		return dynamic_cast<T&>(*temp);
 	}
 	
 	template <class T>
